@@ -5,14 +5,13 @@ int front = 0;
 int rear = -1;
 int* queue;
 int queueSize;
-int count = 0;
 
 bool isEmpty() {
-    return count == 0;
+    return (front < 0 || front > rear) ? true : false;
 }
 
 bool isFull() {
-    return count == queueSize;
+    return rear == queueSize - 1 ? true : false;
 }
 
 void enqueue(int item) {
@@ -20,9 +19,8 @@ void enqueue(int item) {
         cout << "Hang Doi Day! Ko The Enqueue!" << endl;
         return;
     }
-    rear = (rear + 1) % queueSize;
+    rear++;
     queue[rear] = item;
-    count++;
 }
 
 void dequeue() {
@@ -30,8 +28,8 @@ void dequeue() {
         cout << "Hang Doi Rong! Ko The Dequeue!" << endl;
         return;
     }
-    front = (front + 1) % queueSize;
-    count--;
+    queue[front] = 0;
+    front++;
 }
 
 int peek() {
@@ -48,8 +46,8 @@ void displayQueue() {
         return;
     }
     cout << "Noi Dung Hang Doi Tu Front Den Rear: " << endl;
-    for (int i = 0; i < count; i++) {
-        cout << queue[(front + i) % queueSize] << " ";
+    for (int i = front; i <= rear; i++) {
+        cout << queue[i] << " ";
     }
     cout << endl;
 }
