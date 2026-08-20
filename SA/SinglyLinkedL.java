@@ -1,4 +1,4 @@
-public class SinglyLinkedList<T> {
+public class SinglyLinkedL<T> {
   private class Node {
     T value;
     Node next;
